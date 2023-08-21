@@ -14,6 +14,11 @@ export const appSlice = createSlice({
 			showChatMenu:false,
     },
     reducers:{
+			sendMessage:(state,action) => {
+				const date = new Date()
+
+				state.selectiveChat.messages = [...state.selectiveChat.messages,{ content: action.payload, time: date.getHours()+":"+date.getMinutes(), isMyMessage: true },]
+			},
 			showSearchPanel:(state,action) => {
 				state.showSearchPanel = !state.showSearchPanel;
 				state.showInfoPanel = false;
@@ -56,6 +61,7 @@ export const appSlice = createSlice({
 })
 
 export const {
+	sendMessage,
 	showSearchPanel,
 	showInfoPanel,
 	closeNotifBox,
